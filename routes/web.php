@@ -27,3 +27,17 @@ Route::get('/read',function (){
         echo $role->name . "<br>";
     }
 });
+
+//update data
+Route::get('/update',function (){
+   $user = User::findOrFail(1);
+
+   if ($user->has('roles')){
+       foreach ($user->roles as $role){
+           if ($role->name = 'Administrator'){
+               $role->name = 'subscriber';
+               $role->save();
+           }
+       }
+   }
+});
