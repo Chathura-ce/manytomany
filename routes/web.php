@@ -13,6 +13,17 @@ Route::get('/', function () {
 //Insert data
 Route::get('/create',function (){
     $user = User::find(1);
-    $role = new Role(['name'=>'Administrator']);
+    $role = new Role(['name'=>'subscriber']);
     $user->roles()->save($role);
+});
+
+//Reading data
+Route::get('/read',function (){
+    $user = User::findOrFail(1);
+
+//    dd($user->roles);
+
+    foreach ($user->roles as $role){
+        echo $role->name . "<br>";
+    }
 });
