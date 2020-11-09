@@ -42,12 +42,32 @@ Route::get('/update',function (){
    }
 });
 
+//delete data
 Route::get('/delete',function (){
    $user = User::findOrFail(2);
 //   $user->roles->delete(); delete everything
     foreach ($user->roles as $role){
         $role->whereId(2)->delete();
     }
+});
+
+//Attaching detaching and syncing
+//          Attach
+Route::get('/attach',function (){
+    $user = User::findOrFail(1);
+    $user->roles()->attach(2);
+});
+
+//          Detach
+Route::get('/detach',function (){
+    $user = User::findOrFail(1);
+    $user->roles()->detach(2);
+});
+
+//          Sync
+Route::get('/sync',function (){
+    $user = User::findOrFail(2);
+    $user->roles()->sync([2,3]);
 });
 
 
