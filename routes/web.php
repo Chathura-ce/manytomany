@@ -41,3 +41,13 @@ Route::get('/update',function (){
        }
    }
 });
+
+Route::get('/delete',function (){
+   $user = User::findOrFail(2);
+//   $user->roles->delete(); delete everything
+    foreach ($user->roles as $role){
+        $role->whereId(2)->delete();
+    }
+});
+
+
